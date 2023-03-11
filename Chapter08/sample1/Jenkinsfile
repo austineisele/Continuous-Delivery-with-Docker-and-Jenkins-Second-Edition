@@ -1,4 +1,8 @@
-podTemplate(yaml: '''
+pipeline{
+  agent {
+    kubernetes{
+      defaultContainer 'kaniko'
+      yaml '''
     apiVersion: v1
     kind: Pod
     spec:
@@ -35,9 +39,13 @@ podTemplate(yaml: '''
             - key: .dockerconfigjson
               path: config.json
 ''') {
-  node(POD_LABEL) {
+  }
+}
+
+podTemplate(yaml: '''
+(POD_LABEL) {
     stage('Build a gradle project') {
-      git branch: 'master', url: 'https://github.com/austineisele/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
+      git branch: 'master', credentialsId:'jenkins-user-token', url: 'https://github.com/austineisele/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
       container('gradle') {
         stage('Build a gradle project') {
           sh '''
