@@ -29,8 +29,8 @@ public class StepDefinitions {
         result = restTemplate.getForObject(url, String.class);
     }
 
-    @Then("^I receive (.*) as a result$")
-    public void i_receive_as_a_result(String expectedResult) throws Throwable {
+    @Then("^I receive the sum of (.*) as a result$")
+    public void i_receive_this_sum_as_a_result(String expectedResult) throws Throwable {
         assertEquals(expectedResult, result);
     }
 
@@ -46,8 +46,8 @@ public class StepDefinitions {
         result = restTemplate.getForObject(url, String.class);
     }
 
-    @Then("^I receive (.*) as a result$")
-    public void i_receive_as_a_result(String expectedResult) throws Throwable {
+    @Then("^I receive the quotient of (.*) as a result$")
+    public void i_receive_this_quotient_a_result(String expectedResult) throws Throwable {
         assertEquals(expectedResult, result);
     }
 
